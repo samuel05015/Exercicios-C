@@ -1,0 +1,112 @@
+ex 1- Inserção em Vetor Ordenado
+
+#include <stdio.h>    // Biblioteca padrão de entrada e saída
+
+#define TAM 10        // Tamanho máximo do vetor
+
+int main() {
+    int vetor[TAM] = {10, 20, 30, 50};    // Vetor já preenchido com 4 elementos ordenados
+    int n = 4;        // Número atual de elementos no vetor
+    int novo = 25;    // Valor que queremos inserir
+    int i = n - 1;    // Começamos pelo último elemento preenchido
+
+    // Etapa 1: Encontrar onde o novo valor deve ser inserido
+    while (i >= 0 && vetor[i] > novo) {    // Enquanto o valor atual for maior que o novo
+        vetor[i + 1] = vetor[i];    // Empurra o valor para a direita
+        i--;    // Move para o elemento anterior
+    }
+
+    vetor[i + 1] = novo;    // Insere o novo valor na posição correta
+    n++;    // Atualiza o número de elementos
+
+    // Etapa 2: Mostrar o vetor atualizado
+    printf("Vetor após inserção: ");
+    for (i = 0; i < n; i++) {    // Percorre o vetor atualizado
+        printf("%d ", vetor[i]);    // Imprime cada elemento
+    }
+    printf("\n");
+
+    return 0;    // Finaliza o programa
+}
+
+Exercício 2 - Pesquisa Linear em Vetor Ordenado
+
+#include <stdio.h> // Biblioteca padrão de entrada e saída
+
+#define TAM 6       // Define o tamanho do vetor
+
+int main() {
+    int vetor[TAM] = {5, 10, 15, 20, 30, 50}; // Vetor já ordenado
+    int valor = 20;  // Valor que queremos procurar
+    int i;           // Variável de controle do laço
+    int encontrado = -1; // Variável para guardar a posição encontrada (-1 = não encontrado)
+
+    // Vamos percorrer o vetor
+    for (i = 0; i < TAM; i++) {
+        printf("Comparando com posição %d: %d\n", i, vetor[i]); // Mostra a posição atual e o valor
+
+        if (vetor[i] == valor) {        // Se encontramos o valor
+            encontrado = i;             // Armazenamos a posição
+            printf("Valor %d encontrado na posição %d\n", valor, i);
+            break;                      // Paramos a busca
+        } else if (vetor[i] > valor) {  // Se o valor atual é maior que o procurado
+            printf("Parando: valor %d não está no vetor.\n", valor);
+            break;                      // Podemos parar porque o vetor é ordenado
+        }
+    }
+
+    // Se não encontrou o valor
+    if (encontrado == -1) {
+        printf("Valor %d não encontrado no vetor.\n", valor);
+    }
+
+    return 0; // Finaliza o programa
+}
+
+
+Exerício 3- Exclusão em Vetor Ordenado
+
+#include <stdio.h> // Biblioteca padrão de entrada e saída
+#define TAM 10 // Tamanho máximo do vetor
+
+int main() {
+    int vetor[TAM] = {5, 10, 20, 25, 30}; // Vetor ordenado
+    int n = 5; // Número atual de elementos
+    int valor = 20; // Valor que queremos excluir
+    int i, j; // Variáveis para controle dos laços
+    int encontrado = -1; // Guarda a posição onde o valor foi encontrado
+
+    // Etapa 1: Procurar o valor no vetor
+    for (i = 0; i < n; i++) {
+        printf("Comparando com posição %d: %d\n", i, vetor[i]); // Mostra cada comparação
+        if (vetor[i] == valor) { // Se encontramos o valor
+            encontrado = i; // Guardamos a posição
+            printf("Valor %d encontrado na posição %d\n", valor, i);
+            break; // Paramos a busca
+        } else if (vetor[i] > valor) { // Se o valor atual for maior, não precisa continuar
+            printf("Valor não encontrado (interrompido pela ordenação).\n");
+            break;
+        }
+    }
+
+    // Etapa 2: Se encontramos, removemos o valor
+    if (encontrado != -1) {
+        // Deslocar todos os elementos seguintes para a esquerda
+        for (j = encontrado; j < n - 1; j++) {
+            vetor[j] = vetor[j + 1]; // Puxa o elemento seguinte para a posição atual
+        }
+        n--; // Decrementa o número de elementos
+        printf("Valor %d removido do vetor.\n", valor);
+    } else {
+        printf("Valor %d não encontrado no vetor.\n", valor);
+    }
+
+    // Mostrar o vetor atualizado
+    printf("Vetor após exclusão: ");
+    for (i = 0; i < n; i++) {
+        printf("%d ", vetor[i]);
+    }
+    printf("\n");
+
+    return 0; // Finaliza o programa
+}
